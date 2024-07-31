@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nx-welcome',
@@ -434,6 +435,7 @@ import { CommonModule } from '@angular/common';
             <span> Hello there, </span>
             Welcome remoteangular 👋
           </h1>
+          <button (click)="navigateTo()">go to products</button>
         </div>
         <!--  HERO  -->
         <div id="hero" class="rounded">
@@ -473,6 +475,7 @@ import { CommonModule } from '@angular/common';
         <div id="middle-content">
           <div id="learning-materials" class="rounded shadow">
             <h2>Learning materials</h2>
+            <button (click)="navigateTo()">Go to products</button>
             <a
               href="https://nx.dev/getting-started/intro?utm_source=nx-project"
               target="_blank"
@@ -904,4 +907,11 @@ nx affected:e2e</pre>
   styles: [],
   encapsulation: ViewEncapsulation.None,
 })
-export class NxWelcomeComponent {}
+export class NxWelcomeComponent {
+
+  constructor(private router: Router) {}
+
+  navigateTo() {
+    this.router.navigate(['/products'])
+  }
+}

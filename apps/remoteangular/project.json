@@ -7,9 +7,16 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-builders/custom-webpack:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "customWebpackConfig": {
+          "path": "./apps/remoteangular/extra-webpack.config.js",
+          "mergeRules": {
+            "optimization": "merge",
+            "plugins": "append"
+          }
+        },
         "outputPath": "dist/apps/remoteangular",
         "index": "apps/remoteangular/src/index.html",
         "main": "apps/remoteangular/src/main.ts",
@@ -51,7 +58,10 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular-builders/custom-webpack:dev-server",
+      "options": {
+        "browserTarget": "remoteangular:build"
+      },
       "configurations": {
         "production": {
           "buildTarget": "remoteangular:build:production"
